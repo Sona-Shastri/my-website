@@ -25,12 +25,132 @@ body {
   background-attachment: fixed;
   color: var(--ink);
   min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* HERO — full-screen, centered card */
+.hero {
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  line-height: 1.6;
   padding: 2rem;
+}
+
+.scroll-hint {
+  margin-top: 1.6rem;
+  color: var(--lavender-deep);
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  animation: bob 1.8s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* SECTIONS */
+.panel {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem;
+}
+
+.panel h2 {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.9rem;
+  color: #4a3b8f;
+  text-align: center;
+  margin-bottom: 1.3rem;
+}
+
+.panel-sub {
+  text-align: center;
+  color: var(--muted);
+  margin: -0.6rem 0 1.8rem;
+}
+
+.hobby-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.hobby {
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 1.6rem 1rem;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(157, 146, 199, 0.18);
+}
+
+.hobby .emoji {
+  font-size: 2.4rem;
+  display: block;
+}
+
+.hobby h3 {
+  color: #4a3b8f;
+  margin: 0.5rem 0 0.3rem;
+  font-size: 1.15rem;
+}
+
+.hobby p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+
+.frame {
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #efe9fb, #cfc2ec);
+  border: 3px solid #ffffff;
+  box-shadow: 0 8px 20px rgba(157, 146, 199, 0.2);
+}
+
+.facts {
+  list-style: none;
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 0.4rem 1.5rem;
+  box-shadow: 0 10px 24px rgba(157, 146, 199, 0.18);
+}
+
+.facts li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.facts li:last-child {
+  border-bottom: none;
+}
+
+.facts li span:first-child {
+  color: var(--muted);
+}
+
+.facts li span:last-child {
+  color: #4a3b8f;
+  font-weight: 600;
 }
 
 .container {
@@ -48,18 +168,12 @@ body {
 /* (Card lace is now a single seamless border-image — see .container) */
 
 .avatar {
-  width: 110px;
-  height: 110px;
+  width: 124px;
+  height: 124px;
   margin: 0 auto 1.5rem;
-  background: linear-gradient(135deg, var(--lavender) 0%, var(--lavender-deep) 100%);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 14px;
-  font-size: 1.9rem;
-  font-weight: 600;
-  letter-spacing: 1px;
+  background:
+    url("dancer.png") center 43% / 70% auto no-repeat,
+    linear-gradient(135deg, var(--lavender) 0%, var(--lavender-deep) 100%);
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 29.6'%3E%3Cpath d='M23.6 0c-3.4 0-6.3 2.7-7.6 5.6C14.7 2.7 11.8 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.4 9.5 11.9 16 21.2 6.1-9.3 16-12.1 16-21.2C32 3.8 28.2 0 23.6 0z' fill='%23000'/%3E%3C/svg%3E") center / contain no-repeat;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 29.6'%3E%3Cpath d='M23.6 0c-3.4 0-6.3 2.7-7.6 5.6C14.7 2.7 11.8 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.4 9.5 11.9 16 21.2 6.1-9.3 16-12.1 16-21.2C32 3.8 28.2 0 23.6 0z' fill='%23000'/%3E%3C/svg%3E") center / contain no-repeat;
   filter: drop-shadow(0 8px 14px rgba(157, 146, 199, 0.45));
@@ -86,24 +200,15 @@ h1 {
 }
 
 footer {
-  position: fixed;
-  bottom: 16px;
-  left: 0;
-  right: 0;
-  z-index: 1;
   text-align: center;
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  padding: 2.5rem 1rem 3rem;
 }
 
-/* Phones — fill the screen nicely and stay centered */
+/* Phones */
 @media (max-width: 600px) {
-  html,
-  body {
-    min-height: 100svh;
-  }
-
-  body {
+  .hero {
     padding: 18px;
   }
 
@@ -118,7 +223,6 @@ footer {
   .avatar {
     width: 94px;
     height: 94px;
-    font-size: 1.7rem;
   }
 
   h1 {
@@ -129,8 +233,11 @@ footer {
     font-size: 1rem;
   }
 
-  footer {
-    bottom: 10px;
-    font-size: 0.8rem;
+  .panel h2 {
+    font-size: 2.5rem;
+  }
+
+  .gallery-grid {
+    gap: 0.6rem;
   }
 }
