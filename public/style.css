@@ -95,3 +95,42 @@ footer {
   color: var(--muted);
   font-size: 0.85rem;
 }
+
+/* Phones — fill the screen nicely and stay centered */
+@media (max-width: 600px) {
+  html,
+  body {
+    min-height: 100svh;
+  }
+
+  body {
+    padding: 18px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 2rem 1.25rem;
+    border-width: 24px;
+    border-image-width: 24px;
+  }
+
+  .avatar {
+    width: 94px;
+    height: 94px;
+    font-size: 1.7rem;
+  }
+
+  h1 {
+    font-size: 2.9rem;
+  }
+
+  .bio {
+    font-size: 1rem;
+  }
+
+  footer {
+    bottom: 10px;
+    font-size: 0.8rem;
+  }
+}
