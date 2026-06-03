@@ -87,6 +87,60 @@
       </ul>
     </section>
 
+    <!-- LOCKED SECTION -->
+    <section class="panel" id="locked">
+      <h2>Members Only 🔒</h2>
+      <div id="lock-box" class="lockbox">
+        <p class="panel-sub">Enter the username and password to unlock.</p>
+        <div class="login">
+          <input id="user" placeholder="Username" autocomplete="off" />
+          <input id="pass" type="password" placeholder="Password" autocomplete="off" />
+          <button id="unlock-btn">Unlock 🔓</button>
+          <p id="lock-msg" class="lock-msg"></p>
+        </div>
+      </div>
+      <div id="secret" class="lockbox secret hidden">
+        <h3 class="secret-title">Imaging Centers 🩻</h3>
+        <ul class="secret-list">
+          <li>
+            <span class="initials">M.A.</span>
+            <strong>South Texas Radiology Imaging Centers (STRIC)</strong><br />
+            155 E Sonterra Blvd, San Antonio, TX<br />
+            📞 (210) 617-9000
+          </li>
+          <li>
+            <span class="initials">L.K.</span>
+            <strong>Southern Imaging Services (SIS Imaging)</strong><br />
+            7506 East Independence Blvd, Suite 123, Charlotte, NC 28227<br />
+            📞 (704) 321-4798
+          </li>
+          <li>
+            <span class="initials">L.S.</span>
+            <strong>Hennepin Healthcare – Whittier Imaging</strong><br />
+            2810 Nicollet Avenue, Minneapolis, MN 55408<br />
+            📞 (612) 873-6963
+          </li>
+        </ul>
+      </div>
+    </section>
+
     <footer>Built by Sona 💜</footer>
+
+    <script>
+      // NOTE: this is a simple practice lock, not real security.
+      const USERNAME = "SonaTeslaMRI_7";
+      const PASSWORD = "Lav3nder!Gr33ce#26";
+      document.getElementById("unlock-btn").addEventListener("click", function () {
+        const u = document.getElementById("user").value.trim();
+        const p = document.getElementById("pass").value;
+        if (u === USERNAME && p === PASSWORD) {
+          document.getElementById("lock-box").classList.add("hidden");
+          document.getElementById("secret").classList.remove("hidden");
+        } else {
+          document.getElementById("lock-msg").textContent =
+            "Wrong username or password — try again.";
+        }
+      });
+    </script>
   </body>
 </html>
