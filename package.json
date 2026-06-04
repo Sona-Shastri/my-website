@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
-    "start": "prisma migrate deploy && node prisma/seed.mjs && next start",
+    "start": "prisma migrate deploy && node prisma/seed.mjs && next start -p ${PORT:-3000}",
     "postinstall": "prisma generate",
     "add-user": "node scripts/add-user.mjs",
     "seed": "node prisma/seed.mjs"
@@ -16,6 +16,7 @@
     "bcryptjs": "^2.4.3",
     "jose": "^5.9.6",
     "next": "^15.1.4",
+    "prisma": "^6.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -24,7 +25,6 @@
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.4",
     "@types/react-dom": "^19.0.2",
-    "prisma": "^6.2.1",
     "typescript": "^5.7.3"
   }
 }
