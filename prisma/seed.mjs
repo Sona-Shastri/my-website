@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
@@ -59,6 +60,30 @@ async function main() {
     });
   }
   console.log(`Seeded ${sites.length} sites.`);
+
+  // Optionally create/refresh accounts from the INITIAL_USERS env var.
+  // Format: "email|Password|Full Name" entries separated by ; or newline.
+  // Example: sona@x.com|Temp123!|Sona Shastri;taylor@x.com|Temp123!|Taylor Lee
+  const raw = process.env.INITIAL_USERS;
+  if (raw) {
+    const entries = raw.split(/[;\n]+/).map((e) => e.trim()).filter(Boolean);
+    for (const entry of entries) {
+      const [emailRaw, password, ...nameParts] = entry.split("|");
+      const email = (emailRaw || "").trim().toLowerCase();
+      if (!email || !password) {
+        console.warn(`Skipping malformed INITIAL_USERS entry: "${entry}"`);
+        continue;
+      }
+      const name = nameParts.join("|").trim() || email.split("@")[0];
+      const passwordHash = await bcrypt.hash(password.trim(), 10);
+      await prisma.user.upsert({
+        where: { email },
+        create: { email, name, passwordHash },
+        update: { name, passwordHash },
+      });
+      console.log(`Account ready: ${email}`);
+    }
+  }
 }
 
 main()
