@@ -347,6 +347,9 @@ h1 {
 }
 
 .site-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
   padding: 0.6rem 0;
   border-bottom: 1px solid var(--line);
   color: var(--muted);
@@ -356,6 +359,27 @@ h1 {
 
 .site-list li:last-child {
   border-bottom: none;
+}
+
+.site-check {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 0.15rem;
+  accent-color: var(--lavender-deep);
+  cursor: pointer;
+}
+
+.site-body {
+  flex: 1;
+}
+
+.site-list li.checked {
+  opacity: 0.5;
+}
+
+.site-list li.checked .name {
+  text-decoration: line-through;
 }
 
 .site-list .name {

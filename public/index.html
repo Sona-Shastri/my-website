@@ -152,6 +152,35 @@
             "Wrong username or password — try again.";
         }
       });
+
+      // Interactive call-tracking checkboxes — saved in this browser so your
+      // checked-off sites stay checked when you reload or come back later.
+      (function () {
+        document.querySelectorAll(".site-list li").forEach(function (li) {
+          var nameEl = li.querySelector(".name");
+          var key = "called:" + (nameEl ? nameEl.textContent.trim() : li.textContent.trim());
+
+          // Wrap the existing text so the checkbox can sit beside it.
+          var body = document.createElement("div");
+          body.className = "site-body";
+          while (li.firstChild) body.appendChild(li.firstChild);
+
+          var box = document.createElement("input");
+          box.type = "checkbox";
+          box.className = "site-check";
+          box.setAttribute("aria-label", "Mark as called");
+          box.checked = localStorage.getItem(key) === "1";
+          if (box.checked) li.classList.add("checked");
+
+          box.addEventListener("change", function () {
+            li.classList.toggle("checked", box.checked);
+            localStorage.setItem(key, box.checked ? "1" : "0");
+          });
+
+          li.appendChild(body);
+          li.prepend(box);
+        });
+      })();
     </script>
   </body>
 </html>
