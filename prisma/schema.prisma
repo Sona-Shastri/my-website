@@ -18,10 +18,10 @@ model User {
 
 model Site {
   id       String     @id @default(cuid())
-  order    Int        @unique
+  order    Int
   student  String
   city     String
-  name     String
+  name     String     @unique
   address  String
   phone    String
   priority String
