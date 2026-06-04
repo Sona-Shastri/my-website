@@ -1,3 +1,13 @@
 node_modules
 .DS_Store
 .env
+.env*.local
+
+# Next.js
+.next
+next-env.d.ts
+
+# Prisma / SQLite local dev database
+prisma/*.db
+prisma/*.db-journal
+/data

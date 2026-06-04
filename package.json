@@ -1,15 +1,30 @@
 {
   "name": "my-website",
-  "version": "1.0.0",
-  "description": "Sona Shastri's first website",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Sona Shastri's website + Tesla MRI clinical placement call-tracking app",
   "scripts": {
-    "start": "node server.js"
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "prisma migrate deploy && node prisma/seed.mjs && next start",
+    "postinstall": "prisma generate",
+    "add-user": "node scripts/add-user.mjs",
+    "seed": "node prisma/seed.mjs"
   },
   "dependencies": {
-    "express": "^4.19.2"
+    "@prisma/client": "^6.2.1",
+    "bcryptjs": "^2.4.3",
+    "jose": "^5.9.6",
+    "next": "^15.1.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@google/genai": "^2.7.0",
-    "dotenv": "^17.4.2"
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.4",
+    "@types/react-dom": "^19.0.2",
+    "prisma": "^6.2.1",
+    "typescript": "^5.7.3"
   }
 }
